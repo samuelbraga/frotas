@@ -2,6 +2,7 @@ package com.samuelbraga.clients.model;
 
 import com.samuelbraga.clients.dto.CreateClientDTO;
 import java.util.UUID;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,19 +14,32 @@ public class Client {
   @GeneratedValue
   private Long id;
 
+  @Column(unique = true)
+  private String email;
+
   private String name;
 
   private String last_name;
 
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
   public Client() {}
 
-  public Client(Long id, String name, String last_name) {
+  public Client(Long id, String email, String name, String last_name) {
     this.id = id;
+    this.email = email;
     this.name = name;
     this.last_name = last_name;
   }
 
   public Client(CreateClientDTO createClientDTO) {
+    this.email = createClientDTO.getEmail();
     this.name = createClientDTO.getName();
     this.last_name = createClientDTO.getLast_name();
   }

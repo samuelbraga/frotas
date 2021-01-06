@@ -1,5 +1,6 @@
 package com.samuelbraga.clients.controller;
 
+import com.samuelbraga.clients.dto.ClientDTO;
 import com.samuelbraga.clients.dto.CreateClientDTO;
 import com.samuelbraga.clients.model.Client;
 import com.samuelbraga.clients.service.ClientService;
@@ -21,8 +22,8 @@ public class ClientController {
   ClientService clientService;
 
   @POST
-  public Client create(@Valid CreateClientDTO createClientDTO) {
-    Client client = clientService.create(createClientDTO);
-    return client;
+  public ClientDTO create(@Valid CreateClientDTO createClientDTO) {
+    ClientDTO clientDTO = clientService.create(createClientDTO);
+    return clientDTO;
   }
 }
